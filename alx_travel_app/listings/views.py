@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from .models import Listing, Booking
 from .serializers import ListingSerializer, BookingSerializer
+from .tasks import send_booking_email
 
 class ListingViewSet(viewsets.ModelViewSet):
     queryset = Listing.objects.all()
@@ -17,3 +18,6 @@ class BookingViewSet(viewsets.ModelViewSet):
 class SampleAPIView(APIView):
     def get(self, request):
         return Response({"message": "Welcome to ALX Travel App"})
+
+# After saving a booking:
+send_booking_email.delay(customer.email, str(booking))

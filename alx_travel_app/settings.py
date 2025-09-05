@@ -1,4 +1,5 @@
 # Celery Configuration
+
 CELERY_BROKER_URL = "amqp://localhost"   # RabbitMQ default
 CELERY_RESULT_BACKEND = "rpc://"
 
